@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     // Gameobjects for the local and player prefab
     public GameObject localPlayerPrefab;
     public GameObject playerPrefab;
+
+    public GameObject mainCamera;
     // initialize our singleton
     private void Awake()
     {
