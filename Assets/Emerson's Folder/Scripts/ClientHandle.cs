@@ -49,6 +49,15 @@ public class ClientHandle : MonoBehaviour
         // updates the rotation in the local game
         GameManager.players[_id].transform.rotation = _rotation;
     }
+
+    public static void PlayerDisconnected(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+
+        Destroy(GameManager.players[_id].gameObject);
+        GameManager.players.Remove(_id);
+    }
+
     /* // UDP Test
     public static void UDPTest(Packet _packet)
     {
