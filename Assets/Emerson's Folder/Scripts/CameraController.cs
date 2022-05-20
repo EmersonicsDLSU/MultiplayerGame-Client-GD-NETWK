@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Simple code for free-looking mechanic
 public class CameraController : MonoBehaviour
 {
     public PlayerManager player;

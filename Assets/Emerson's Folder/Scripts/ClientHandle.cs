@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ClientHandle : MonoBehaviour
 {
+
     public static void Welcome(Packet _packet)
     {
         // reads the string message from the _packet

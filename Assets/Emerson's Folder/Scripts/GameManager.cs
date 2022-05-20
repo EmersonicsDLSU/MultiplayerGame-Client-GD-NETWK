@@ -5,33 +5,34 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    // stores all player info on the client side
+
     public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>();
-    // Gameobjects for the local and player prefab
+
     public GameObject localPlayerPrefab;
     public GameObject playerPrefab;
 
     public GameObject mainCamera;
-    // initialize our singleton
     private void Awake()
     {
-        // if null, then assign it to this class instance
         if (instance == null)
         {
             instance = this;
         }
-        // else, destroy the duplicate instance
         else if (instance != this)
         {
-            Debug.LogError($"Instance already exists, destroying object!");
+            Debug.Log("Instance already exists, destroying object!");
             Destroy(this);
         }
     }
-    // method to spawn the player
+
+    /// <summary>Spawns a player.</summary>
+    /// <param name="_id">The player's ID.</param>
+    /// <param name="_name">The player's name.</param>
+    /// <param name="_position">The player's starting position.</param>
+    /// <param name="_rotation">The player's starting rotation.</param>
     public void SpawnPlayer(int _id, string _username, Vector3 _position, Quaternion _rotation)
     {
         GameObject _player;
-        // if its a local player
         if (_id == Client.instance.myId)
         {
             _player = Instantiate(localPlayerPrefab, _position, _rotation);
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
         {
             _player = Instantiate(playerPrefab, _position, _rotation);
         }
-        // assigns the information of the player to the created prefab
+
         _player.GetComponent<PlayerManager>().id = _id;
         _player.GetComponent<PlayerManager>().username = _username;
         players.Add(_id, _player.GetComponent<PlayerManager>());

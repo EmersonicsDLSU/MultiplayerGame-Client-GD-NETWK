@@ -32,4 +32,5 @@ public class UIManager : MonoBehaviour
         // the client will now connect to the server
         Client.instance.ConnectToServer();
     }
+
 }
