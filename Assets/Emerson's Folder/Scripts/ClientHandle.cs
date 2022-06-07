@@ -57,6 +57,22 @@ public class ClientHandle : MonoBehaviour
         Destroy(GameManager.players[_id].gameObject);
         GameManager.players.Remove(_id);
     }
+    // reads the player's health coming from the server
+    public static void PlayerHealth(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+        float _health = _packet.ReadFloat();
+
+        GameManager.players[_id].SetHealth(_health);
+    }
+    
+    // reads the player's respawned condition coming from the server
+    public static void PlayerRespawned(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+
+        GameManager.players[_id].Respawn();
+    }
 
     /* // UDP Test
     public static void UDPTest(Packet _packet)

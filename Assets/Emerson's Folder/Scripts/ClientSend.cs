@@ -51,6 +51,17 @@ public class ClientSend : MonoBehaviour
             SendUDPData(_packet);
         }
     }
+    // passing the view direction of the player when shooting
+    public static void PlayerShoot(Vector3 _facing)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.playerShoot))
+        {
+            _packet.Write(_facing);
+
+            SendTCPData(_packet);
+        }
+    }
+
     /* // UDP test 
     public static void UDPTestReceived()
     {
