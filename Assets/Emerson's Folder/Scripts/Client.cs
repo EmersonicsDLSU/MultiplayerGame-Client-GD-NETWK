@@ -33,12 +33,6 @@ public class Client : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        tcp = new TCP();
-        udp = new UDP();
-    }
-
     private void OnApplicationQuit()
     {
         Disconnect(); // Disconnect when the game is closed
@@ -47,6 +41,9 @@ public class Client : MonoBehaviour
     /// <summary>Attempts to connect to the server.</summary>
     public void ConnectToServer()
     {
+        tcp = new TCP();
+        udp = new UDP();
+
         InitializeClientData();
         isConnected = true;
         GameManager.instance.mainCamera.SetActive(false);
@@ -122,8 +119,9 @@ public class Client : MonoBehaviour
 
                 byte[] _data = new byte[_byteLength];
                 Array.Copy(receiveBuffer, _data, _byteLength);
-
+                // this will take in the boolean returned by the 'HandleData'
                 receivedData.Reset(HandleData(_data)); // Reset receivedData if all data was handled
+                // after resetting receivedData, we read again until all packets were read
                 stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
             }
             catch
@@ -133,7 +131,7 @@ public class Client : MonoBehaviour
         }
 
         /// <summary>Prepares received data to be used by the appropriate packet handler methods.</summary>
-        /// <param name="_data">The recieved data.</param>
+        /// <param name="_data">The received data.</param>
         private bool HandleData(byte[] _data)
         {
             int _packetLength = 0;
