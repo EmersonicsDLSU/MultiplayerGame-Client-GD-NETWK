@@ -29,8 +29,10 @@ public class ClientHandle : MonoBehaviour
         string _username = _packet.ReadString();
         Vector3 _position = _packet.ReadVector3();
         Quaternion _rotation = _packet.ReadQuaternion();
+        int _playerColor = _packet.ReadInt();
         // call this method to create and spawn the new player
-        GameManager.instance.SpawnPlayer(_id, _username, _position, _rotation);
+        GameManager.instance.SpawnPlayer(_id, _username, _position, _rotation, _playerColor);
+        //GameManager.instance.SpawnPlayer(_id, _username, _position, _rotation);
     }
     public static void PlayerPosition(Packet _packet)
     {
@@ -54,8 +56,7 @@ public class ClientHandle : MonoBehaviour
     {
         int _id = _packet.ReadInt();
 
-        Destroy(GameManager.players[_id].gameObject);
-        GameManager.players.Remove(_id);
+        GameManager.instance.PlayerDisconnected(_id);
     }
     // reads the player's health coming from the server
     public static void PlayerHealth(Packet _packet)
@@ -122,7 +123,13 @@ public class ClientHandle : MonoBehaviour
 
         GameManager.projectiles[_projectileId].Explode(_position);
     }
+    public static void PlayerKillPoint(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+        int _killCount = _packet.ReadInt();
 
+        GameManager.instance.UpdateKillCount(_id, _killCount);
+    }
     /* // UDP Test
     public static void UDPTest(Packet _packet)
     {

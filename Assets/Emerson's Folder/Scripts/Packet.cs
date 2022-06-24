@@ -4,6 +4,16 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
+/// <summary>Player colors for identification.</summary>
+public enum PlayerColors
+{
+    RED,
+    BLUE,
+    GREEN,
+    WHITE,
+    BLACK,
+    YELLOW
+}
 /// <summary>Sent from server to client.</summary>
 public enum ServerPackets
 {
@@ -19,7 +29,8 @@ public enum ServerPackets
     itemPickedUp,
     spawnProjectile,
     projectilePosition,
-    projectileExploded
+    projectileExploded,
+    playerKillPoint
 }
 
 /// <summary>Sent from client to server.</summary>
