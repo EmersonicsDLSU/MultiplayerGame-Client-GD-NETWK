@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
@@ -32,15 +33,30 @@ public class ClientHandle : MonoBehaviour
         int _playerColor = _packet.ReadInt();
         // call this method to create and spawn the new player
         GameManager.instance.SpawnPlayer(_id, _username, _position, _rotation, _playerColor);
-        //GameManager.instance.SpawnPlayer(_id, _username, _position, _rotation);
     }
     public static void PlayerPosition(Packet _packet)
     {
         // reads the packet which contains the id and updated position
         int _id = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
+        bool _isWalking = _packet.ReadBool();
+        bool _isJumping = _packet.ReadBool();
+        bool _isGround = _packet.ReadBool();
         // updates the position in the local game
         GameManager.players[_id].transform.position = _position;
+        // update ground position
+        GameManager.players[_id].isGround = _isGround;
+        // play sound for movement
+        if (_isJumping && _isGround)
+        {
+            AudioManager.Instance.Stop(SoundCode.WALK_SOUND);
+            AudioManager.Instance.Play(SoundCode.JUMP_SOUND);
+        }
+        else if (_isWalking && _isGround && 
+                 !AudioManager.Instance.GetSound(SoundCode.WALK_SOUND).source.isPlaying)
+        {
+            AudioManager.Instance.Play(SoundCode.WALK_SOUND);
+        }
     }
 
     public static void PlayerRotation(Packet _packet)
@@ -104,6 +120,8 @@ public class ClientHandle : MonoBehaviour
         Vector3 _position = _packet.ReadVector3();
         int _thrownByPlayer = _packet.ReadInt();
 
+        // call throw sound
+        AudioManager.Instance.Play(SoundCode.THROW_SOUND);
         GameManager.instance.SpawnProjectile(_projectileId, _position);
         GameManager.players[_thrownByPlayer].itemCount--;
     }
@@ -129,6 +147,16 @@ public class ClientHandle : MonoBehaviour
         int _killCount = _packet.ReadInt();
 
         GameManager.instance.UpdateKillCount(_id, _killCount);
+    }
+    public static void UpdateGameManager(Packet _packet)
+    {
+        float _timeTick = _packet.ReadFloat();
+        float _maxTime = _packet.ReadFloat();
+
+        GameManager.instance._timeTick = _timeTick;
+        GameManager.instance._maxTime = _maxTime;
+        UIManager.instance.timerText.text = 
+            $"Time Left: {Math.Round(_timeTick, 1)}";
     }
     /* // UDP Test
     public static void UDPTest(Packet _packet)

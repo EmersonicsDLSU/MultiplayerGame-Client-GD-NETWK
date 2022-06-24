@@ -14,6 +14,7 @@ public class ProjectileManager : MonoBehaviour
 
     public void Explode(Vector3 _position)
     {
+        AudioManager.Instance.Play(SoundCode.BALL_EXPLOSION);
         transform.position = _position;
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         GameManager.projectiles.Remove(id);

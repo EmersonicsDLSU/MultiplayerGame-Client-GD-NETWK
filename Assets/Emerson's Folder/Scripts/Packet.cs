@@ -30,7 +30,8 @@ public enum ServerPackets
     spawnProjectile,
     projectilePosition,
     projectileExploded,
-    playerKillPoint
+    playerKillPoint,
+    updateGameManager
 }
 
 /// <summary>Sent from client to server.</summary>

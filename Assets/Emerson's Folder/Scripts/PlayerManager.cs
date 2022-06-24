@@ -12,6 +12,9 @@ public class PlayerManager : MonoBehaviour
     public int itemCount = 0;
     [HideInInspector]public int killCount = 0;
     [HideInInspector]public Text playerNameScore;
+    [HideInInspector]public bool isWalking;
+    [HideInInspector]public bool isJumping;
+    [HideInInspector]public bool isGround;
     public MeshRenderer model;
 
     [SerializeField]private Image healthBar;
@@ -31,12 +34,20 @@ public class PlayerManager : MonoBehaviour
         health = maxHealth;
     }
     // assigns the health
-    public void SetHealth(float _health)
+    public void SetHealth(float _health, bool _isDamage = true)
     {
+        // play damage sound
+        if (_isDamage)
+        {
+            AudioManager.Instance.Play(SoundCode.GET_HIT_SOUND);
+        }
+        // assigns a new health
         health = _health;
         // check if player dies
         if (health <= 0f)
         {
+            // play death sound
+            AudioManager.Instance.Play(SoundCode.DEAD);
             Die();
         }
     }
@@ -49,6 +60,6 @@ public class PlayerManager : MonoBehaviour
     public void Respawn()
     {
         model.enabled = true;
-        SetHealth(maxHealth);
+        SetHealth(maxHealth, false);
     }
 }

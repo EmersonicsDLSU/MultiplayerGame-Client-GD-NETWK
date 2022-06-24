@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     
     public GameObject mainCamera;
 
+    // timer
+    [HideInInspector]public float _timeTick;
+    [HideInInspector]public float _maxTime;
+
     [SerializeField] private List<Material> colorMaterials;
     private void Awake()
     {

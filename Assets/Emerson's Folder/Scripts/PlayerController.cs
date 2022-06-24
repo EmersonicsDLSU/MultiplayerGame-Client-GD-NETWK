@@ -5,6 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Transform camTransform;
+    private PlayerManager playerManagerSc;
+
+
+    void Start()
+    {
+        playerManagerSc = GetComponent<PlayerManager>();
+    }
 
     private void Update()
     {

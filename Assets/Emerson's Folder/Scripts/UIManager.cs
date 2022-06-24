@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     public GameObject playerInfoPanelPrefab;
     // input field UI object
     public InputField usernameField;
+    // Timer UI object
+    public Text timerText;
     // playerInfoPanel list
     [HideInInspector] public List<GameObject> playerInfoList = new List<GameObject>();
     // singleton process    
@@ -32,6 +34,13 @@ public class UIManager : MonoBehaviour
             Destroy(this);
         }
     }
+
+    private void Start()
+    {
+        // play menuSound bgm
+        AudioManager.Instance.Play(SoundCode.MAIN_MENU);
+    }
+
     // will be called when the player clicks the 'connect' button
     public void ConnectToServer()
     {
@@ -43,6 +52,9 @@ public class UIManager : MonoBehaviour
         startMenu.SetActive(false);
         usernameField.interactable = false;
         inGamePanel.SetActive(true);
+        // transition bgm to battle bgm
+        AudioManager.Instance.Stop(SoundCode.MAIN_MENU);
+        AudioManager.Instance.Play(SoundCode.INGAME_SOUND);
         // the client will now connect to the server
         Client.instance.ConnectToServer();
     }

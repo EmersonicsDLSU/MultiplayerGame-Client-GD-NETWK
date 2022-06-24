@@ -308,7 +308,8 @@ public class Client : MonoBehaviour
             { (int)ServerPackets.spawnProjectile, ClientHandle.SpawnProjectile },
             { (int)ServerPackets.projectilePosition, ClientHandle.ProjectilePosition },
             { (int)ServerPackets.projectileExploded, ClientHandle.ProjectileExploded },
-            { (int)ServerPackets.playerKillPoint, ClientHandle.PlayerKillPoint }
+            { (int)ServerPackets.playerKillPoint, ClientHandle.PlayerKillPoint },
+            { (int)ServerPackets.updateGameManager, ClientHandle.UpdateGameManager }
         };
         Debug.Log("Initialized packets.");
     }
