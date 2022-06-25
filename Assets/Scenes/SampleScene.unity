@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.46723163, g: 0.6200442, b: 0.7810394, a: 1}
+  m_IndirectSpecularColor: {r: 0.46722722, g: 0.62004197, b: 0.78103966, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb4a21c66083d941a846a22268ed0af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ip: 127.0.01
+  ip: 192.168.68.134
   port: 26950
   myId: 0
 --- !u!4 &737304713
@@ -992,7 +992,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51750490084d8e4081825c722cde185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - code: -1
+    clip: {fileID: 8300000, guid: 807e5d60e34159542b85a8fbb99c5608, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 1
+    source: {fileID: 0}
+  - code: 0
+    clip: {fileID: 8300000, guid: 807e5d60e34159542b85a8fbb99c5608, type: 3}
+    volume: 0.088
+    pitch: 0.95
+    loop: 0
+    source: {fileID: 0}
+  - code: 1
+    clip: {fileID: 8300000, guid: c42f8de361c18fb4f8fb0b0f2847a0de, type: 3}
+    volume: 0.187
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - code: 2
+    clip: {fileID: 8300000, guid: c42f8de361c18fb4f8fb0b0f2847a0de, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - code: 3
+    clip: {fileID: 8300000, guid: 73cb64b8099f8184c9a1ada63b6e3a83, type: 3}
+    volume: 0.215
+    pitch: 1.03
+    loop: 0
+    source: {fileID: 0}
+  - code: 4
+    clip: {fileID: 8300000, guid: c42f8de361c18fb4f8fb0b0f2847a0de, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - code: 5
+    clip: {fileID: 8300000, guid: c42f8de361c18fb4f8fb0b0f2847a0de, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - code: 6
+    clip: {fileID: 8300000, guid: 74961c793db87d743984aa9d53d58220, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - code: 7
+    clip: {fileID: 8300000, guid: c42f8de361c18fb4f8fb0b0f2847a0de, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - code: 8
+    clip: {fileID: 8300000, guid: 4f1dcd87bf9a8594b9e7682a6f9929b1, type: 3}
+    volume: 0.563
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - code: 9
+    clip: {fileID: 8300000, guid: d83fc6d1cf3e7484d923851a0815b49c, type: 3}
+    volume: 0.049
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!4 &1511674062
 Transform:
   m_ObjectHideFlags: 0
