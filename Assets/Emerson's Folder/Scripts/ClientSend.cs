@@ -72,6 +72,16 @@ public class ClientSend : MonoBehaviour
         }
     }
 
+    public static void PlayAgain(int _id)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.playAgain))
+        {
+            _packet.Write(_id);
+
+            SendTCPData(_packet);
+        }
+    }
+
     /* // UDP test 
     public static void UDPTestReceived()
     {

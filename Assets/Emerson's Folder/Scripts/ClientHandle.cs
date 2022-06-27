@@ -152,11 +152,26 @@ public class ClientHandle : MonoBehaviour
     {
         float _timeTick = _packet.ReadFloat();
         float _maxTime = _packet.ReadFloat();
+        bool _isGameFinished = _packet.ReadBool();
 
         GameManager.instance._timeTick = _timeTick;
         GameManager.instance._maxTime = _maxTime;
+        GameManager.instance._isGameFinished = _isGameFinished;
         UIManager.instance.timerText.text = 
             $"Time Left: {Math.Round(_timeTick, 1)}";
+
+        if (_isGameFinished)
+        {
+            Debug.LogError($"GameFinish!");
+            UIManager.instance.ShowWinner();
+        }
+    }
+    public static void ResetGame(Packet _packet)
+    {
+        bool _isGameFinished = _packet.ReadBool();
+
+        GameManager.instance._isGameFinished = _isGameFinished;
+        UIManager.instance.waitPanel.SetActive(false);
     }
     /* // UDP Test
     public static void UDPTest(Packet _packet)

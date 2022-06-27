@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     // timer
     [HideInInspector]public float _timeTick;
     [HideInInspector]public float _maxTime;
+    [HideInInspector]public bool _isGameFinished;
 
     [SerializeField] private List<Material> colorMaterials;
     private void Awake()
@@ -65,12 +66,14 @@ public class GameManager : MonoBehaviour
         // change player meshRenderer color
         _player.GetComponentInChildren<MeshRenderer>().material =
             SetPlayerColor((PlayerColors) _playerColor);
+        // assign playerColor
+        _player.GetComponent<PlayerManager>().playerColor = (PlayerColors) _playerColor;
         
         _player.GetComponent<PlayerManager>().Initialize(_id, _username);
         players.Add(_id, _player.GetComponent<PlayerManager>());
     }
     
-    private Color SetPanelColor(PlayerColors _playerColor)
+    public static Color SetPanelColor(PlayerColors _playerColor)
     {
         switch (_playerColor)
         {
@@ -154,4 +157,5 @@ public class GameManager : MonoBehaviour
         Destroy(players[_id].gameObject);
         players.Remove(_id);
     }
+    
 }

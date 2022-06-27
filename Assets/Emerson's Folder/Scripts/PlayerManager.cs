@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]public bool isJumping;
     [HideInInspector]public bool isGround;
     public MeshRenderer model;
+    [HideInInspector] public PlayerColors playerColor;
 
     [SerializeField]private Image healthBar;
 
@@ -61,5 +62,11 @@ public class PlayerManager : MonoBehaviour
     {
         model.enabled = true;
         SetHealth(maxHealth, false);
+    }
+    public void Reset()
+    {
+        model.enabled = true;
+        SetHealth(maxHealth, false);
+        killCount = 0;
     }
 }

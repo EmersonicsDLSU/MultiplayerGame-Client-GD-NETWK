@@ -15,12 +15,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !GameManager.instance._isGameFinished)
         {
             ClientSend.PlayerShoot(camTransform.forward);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !GameManager.instance._isGameFinished)
         {
             ClientSend.PlayerThrowItem(camTransform.forward);
         }
@@ -33,6 +33,12 @@ public class PlayerController : MonoBehaviour
     /// <summary>Sends player input to the server.</summary>
     private void SendInputToServer()
     {
+        if (GameManager.instance._isGameFinished)
+        {
+            bool[] inputs = new bool[]{false, false, false, false};
+            ClientSend.PlayerMovement(inputs);
+            return;
+        }
         bool[] _inputs = new bool[]
         {
             Input.GetKey(KeyCode.W),
