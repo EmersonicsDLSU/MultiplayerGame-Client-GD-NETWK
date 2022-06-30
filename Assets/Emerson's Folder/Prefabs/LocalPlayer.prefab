@@ -52,7 +52,13 @@ MonoBehaviour:
   health: 0
   maxHealth: 100
   itemCount: 0
+  killCount: 0
+  playerNameScore: {fileID: 0}
+  isWalking: 0
+  isJumping: 0
+  isGround: 0
   model: {fileID: 8295118073519907194}
+  playerColor: 0
   healthBar: {fileID: 6007247466471189130}
 --- !u!114 &2179008132105728087
 MonoBehaviour:

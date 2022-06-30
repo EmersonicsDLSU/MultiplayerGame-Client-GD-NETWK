@@ -171,6 +171,7 @@ public class ClientHandle : MonoBehaviour
         bool _isGameFinished = _packet.ReadBool();
 
         GameManager.instance._isGameFinished = _isGameFinished;
+        UIManager.instance.winnerPanel.SetActive(false);
         UIManager.instance.waitPanel.SetActive(false);
     }
     /* // UDP Test

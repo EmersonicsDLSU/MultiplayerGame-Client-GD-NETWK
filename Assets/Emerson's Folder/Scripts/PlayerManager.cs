@@ -62,11 +62,14 @@ public class PlayerManager : MonoBehaviour
     {
         model.enabled = true;
         SetHealth(maxHealth, false);
+        killCount = 0;
+        itemCount = 0;
     }
     public void Reset()
     {
         model.enabled = true;
         SetHealth(maxHealth, false);
         killCount = 0;
+        itemCount = 0;
     }
 }
